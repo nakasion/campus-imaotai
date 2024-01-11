@@ -12,9 +12,9 @@ ENV SERVER_PORT=8160
 
 EXPOSE ${SERVER_PORT}
 
-ADD ./target/campus-modular.jar ./app.jar
+ADD target/campus-modular.jar /home/campus-service.jar
 
 ENTRYPOINT ["java", \
             "-Djava.security.egd=file:/dev/./urandom", \
             "-Dserver.port=${SERVER_PORT}", \
-            "-jar", "app.jar"]
+            "-jar", "campus-service.jar"]
