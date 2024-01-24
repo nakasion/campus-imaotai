@@ -154,4 +154,25 @@ public class IUserController {
     public R remove(@PathVariable Long[] mobiles) {
         return R.ok(iUserMapper.deleteIUser(mobiles));
     }
+
+    /**
+     * 外部刷新token发送验证码
+     * @return
+     */
+    @GetMapping(value = "/updateTokenSendCode", name = "外部刷新token发送验证码")
+    public R updateTokenSendCode(String mobile) {
+        return R.ok(imtService.updateTokenSendCode(mobile));
+    }
+
+    /**
+     * 外部刷新token登录
+     * @param mobile
+     * @param code
+     * @return
+     */
+    @GetMapping(value = "/updateTokenLogin", name = "外部刷新token登录")
+    public R updateTokenLogin(String mobile, String code) {
+        imtService.updateTokenLogin(mobile, code);
+        return R.ok();
+    }
 }

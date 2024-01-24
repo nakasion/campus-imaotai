@@ -77,5 +77,18 @@ public interface IMTService {
      */
     void appointmentResults();
 
+    /**
+     * 外部刷新token发送验证码
+     * @param mobile
+     * @return
+     */
+    Boolean updateTokenSendCode(String mobile);
 
+    /**
+     * 外部刷新token登录
+     * @param mobile
+     * @param code
+     * @return
+     */
+    boolean updateTokenLogin(String mobile, String code);
 }

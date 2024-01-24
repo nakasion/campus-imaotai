@@ -544,6 +544,24 @@ public class IMTServiceImpl implements IMTService {
         logger.info("申购结果查询结束=========================");
     }
 
+    @Override
+    public Boolean updateTokenSendCode(String mobile) {
+        IUser user = iUserMapper.selectById(mobile);
+        if (user == null) {
+            return false;
+        }
+        return this.sendCode(mobile, user.getDeviceId());
+    }
+
+    @Override
+    public boolean updateTokenLogin(String mobile, String code) {
+        IUser user = iUserMapper.selectById(mobile);
+        if (user == null) {
+            return false;
+        }
+        return this.login(mobile, code, user.getDeviceId());
+    }
+
     public JSONObject reservation(IUser iUser, String itemId, String shopId) {
         Map<String, Object> map = new HashMap<>();
         JSONArray itemArray = new JSONArray();
