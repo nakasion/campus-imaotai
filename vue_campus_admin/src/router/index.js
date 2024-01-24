@@ -52,6 +52,11 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/updateToken',
+    component: () => import('@/views/imt/user/updateToken.vue'),
+    hidden: true
+  },
+  {
     path: '/404',
     component: () => import('@/views/error/404'),
     hidden: true

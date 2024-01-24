@@ -4,9 +4,8 @@
       <el-form-item label="手机号" prop="mobile">
         <el-input
           v-model="form.mobile"
-          readonly
-          placeholder="请输入I茅台用户手机号"
-        />
+          :maxlength="11"
+          placeholder="请输入I茅台用户手机号"/>
         <div style="margin-top: 10px">
           <el-button
             type="primary"
@@ -47,9 +46,14 @@ export default {
       form: {},
       //发送验证码
       sendCode(mobile) {
+        if (mobile === '' || mobile === undefined) {
+          this.$modal.msgError("手机号不能为空");
+          return;
+        }
         sendCode(mobile).then((response) => {
           if (false === response.data) {
-            this.$modal.msgSuccess("手机号不存在");
+            this.$modal.msgError("手机号不存在");
+            return;
           }
           this.$modal.msgSuccess("发送成功");
           this.state = true;
@@ -65,6 +69,10 @@ export default {
       },
       //刷新
       refresh(mobile, code) {
+        if (code === '' || code === undefined) {
+          this.$modal.msgError("验证码不能为空");
+          return;
+        }
         login(mobile, code).then((response) => {
           this.$modal.msgSuccess("刷新成功");
         });

@@ -12,7 +12,7 @@ export function sendCode(mobile) {
 // 查询I茅台用户列表
 export function login(mobile, code) {
   return request({
-    url: '/imt/user/login',
+    url: '/imt/user/updateTokenLogin',
     method: 'get',
     params: { mobile: mobile, code: code}
   })
