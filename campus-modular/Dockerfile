@@ -1,21 +1,11 @@
-FROM adoptopenjdk/openjdk8
-#FROM java:8
-#FROM openjdk:8
+FROM openjdk:8
 
-MAINTAINER oddfar
+RUN RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \&& echo 'Asia/Shanghai' >/etc/timezone
 
-# 创建目录
-RUN mkdir -p /home/campus/conf
+EXPOSE 8160
 
-WORKDIR /home/campus
-
-ENV SERVER_PORT=8160
-
-EXPOSE ${SERVER_PORT}
+WORKDIR /home/campus/conf
 
 ADD target/campus-modular.jar /home/campus-service.jar
 
-ENTRYPOINT ["java", \
-            "-Djava.security.egd=file:/dev/./urandom", \
-            "-Dserver.port=${SERVER_PORT}", \
-            "-jar", "campus-service.jar"]
+ENTRYPOINT ["java", "-jar", "/home/campus-service.jar"]
