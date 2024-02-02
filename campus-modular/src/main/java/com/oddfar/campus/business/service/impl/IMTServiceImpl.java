@@ -167,7 +167,7 @@ public class IMTServiceImpl implements IMTService {
             return true;
         } else {
             logger.error("「登录请求-失败」" + body.toJSONString());
-            throw new ServiceException("登录失败，本地错误日志已记录");
+            throw new ServiceException("登录失败" + body.getString("message"));
 //            return false;
         }
 

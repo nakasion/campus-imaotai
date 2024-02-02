@@ -39,7 +39,8 @@ public class IUserServiceImpl implements IUserService {
         if (user != null) {
             //存在则更新
             IUser iUser = new IUser(mobile, jsonObject);
-            iUser.setCreateUser(SecurityUtils.getUserId());
+//            iUser.setCreateUser(SecurityUtils.getUserId());
+            iUser.setCreateUser(1L);
             BeanUtil.copyProperties(iUser, user, "shopType", "minute");
             return iUserMapper.updateById(user);
         } else {
